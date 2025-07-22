@@ -64,6 +64,10 @@
     color: #ccc;
 }
 
+#book-area-alert{
+    color: gray;
+}
+
 @media (max-width: 600px) {
 
     p{

@@ -19,6 +19,20 @@ export default function BookReader() {
         GetBook();
     }, []);
 
+
+    const [timer, setTimer] = useState(0);
+    const [isLoading] = useState(true)
+
+    useEffect(() => {
+        if (!isLoading) return;
+
+        const interval = setInterval(() => {
+            setTimer(prev => prev + 1);
+        }, 1000);
+
+        return () => clearInterval(interval);
+    }, [isLoading]);
+
     const GetBook = async () => {
         const response = await fetch(`https://pylibrary.onrender.com/books?name=${name}`);
         if (!response.ok) {
@@ -41,7 +55,7 @@ export default function BookReader() {
                 <div id="book-sidebar">
                     <div id="book-side-notes">
                         <h1>Notes</h1>
-                        <textarea name="" id="book-side-text" spellCheck="false" placeholder="Deixe sua mente livre escreva aqui!"/>
+                        <textarea name="" id="book-side-text" spellCheck="false" placeholder="Deixe sua mente livre escreva aqui!" />
                     </div>
 
                     <div id="book-side-chapter">
@@ -51,7 +65,15 @@ export default function BookReader() {
                 </div>
 
                 <div id="book-area">
-                    {book?.good_read[chapter < book.good_read.length ? chapter : 0] || "Loading..."}
+                    {book?.good_read[chapter < book.good_read.length ? chapter : 0] || <>
+                        <p>Loanding...</p>
+                        <br />
+                        <p id="book-area-alert">
+                            Pode levar até 45s. Caso demore aperte - Proximo Capitulo -
+                            <br/>
+                            {timer}s
+                        </p>
+                    </>}
                 </div>
 
             </div>
