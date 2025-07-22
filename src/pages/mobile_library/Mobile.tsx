@@ -1,14 +1,16 @@
 import './Mobile.css'
 import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom';
 import foto from "../../assets/v3.png"
 
 
 
 function Mobile() {
+  const navigate = useNavigate()
 
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false)
-
+  
 
   useEffect(() => {
     function handleScroll() {
@@ -23,6 +25,11 @@ function Mobile() {
 
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+
+  const handleBookClick = (bookName: string) => {
+      navigate(`/book/${bookName}`);
+   }
 
 
   return (
@@ -71,9 +78,9 @@ function Mobile() {
       </div>
 
       <div id='library-menu-scope'>
-        <div className='library-book-scope' id='img-1'/>
-        <div className='library-book-scope' id='img-2'/>
-        <div className='library-book-scope' id='img-3'/>
+        <div className='library-book-scope' onClick={() => handleBookClick("poor_folk")} id='img-1'/>
+        <div className='library-book-scope' onClick={() => handleBookClick("prince")} id='img-2'/>
+        <div className='library-book-scope' onClick={() => handleBookClick("livro")} id='img-3'/>
 
       </div>
      
