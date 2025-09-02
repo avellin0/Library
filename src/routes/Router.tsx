@@ -1,6 +1,10 @@
 import {createBrowserRouter} from 'react-router-dom'
-import BookReader from '../pages/book_reader/book_reader';
 import App from '../App';
+import { PersonalBooks } from '../pages/PrivateBooks/PersonalBook';
+import { TranslateEpub } from '../pages/Translate/Translate';
+import { PageNotFound } from '../pages/PageNotFound/PageNotFound';
+import { EbookReader } from '../pages/NewEbook/book_reader';
+import { Login } from '../pages/Login/Login';
 
 const router = createBrowserRouter([
   {
@@ -9,8 +13,33 @@ const router = createBrowserRouter([
   },
   {
     path: "/book/:name",
-    element: <BookReader />,
+    element: <EbookReader/>,
   },
+  {
+    path: "/personal_book",
+    element: <PersonalBooks mobile={false} />
+  },
+  {
+    path: "/m_personal_book",
+    element: <PersonalBooks mobile={true} />
+  },
+  {
+    path: "/translate",
+    element: <TranslateEpub />
+  },
+  {
+    path: "/favorites",
+    element: <PageNotFound/>
+  },
+  {
+    path: "/reading",
+    element: <PageNotFound/>
+  },
+  {
+    path: "login",
+    element: <Login />
+  }
+
 ]);
 
 export default router;
