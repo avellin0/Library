@@ -22,7 +22,7 @@ export function TranslateEpub() {
     const formData = new FormData();
     formData.append("file", file);
 
-    await fetch("http://localhost:8000/upload", {
+    await fetch("https://pylibrary.onrender.com", {
       method: "POST",
       body: formData,
     });
@@ -38,14 +38,11 @@ export function TranslateEpub() {
       return;
     }
 
-    // lê direto como ArrayBuffer
     const arrayBuffer = await response.arrayBuffer();
 
-    // cria um Blob a partir do ArrayBuffer
     const blob = new Blob([arrayBuffer], { type: "application/epub+zip" });
     const url = URL.createObjectURL(blob);
 
-    // se quiser baixar na máquina
     const a = document.createElement("a");
     a.href = url;
     a.download = `${filename}`;
@@ -75,7 +72,7 @@ export function TranslateEpub() {
           <h1>Escolha seu Livro original</h1>
           <input type="file" accept=".epub" onChange={handleChange} />
           <button onClick={handleUpload} id="translate-upload-button">Enviar e Baixar Traduzido</button>
-          {sendMessage && <p id="translate-wait-message">Pode levar alguns segundos...</p>}
+          {sendMessage && <p id="translate-wait-message">Nossos poliglotas já estão traduzindo seu livro! se divirta enquanto isso.</p>}
 
         </div>
 
