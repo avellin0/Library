@@ -52,10 +52,10 @@ function Mobile() {
 
             <div className={`sidebar ${open ? 'show' : ''}`}>
               <ul>
-                <li><a href="/reading">Reading</a></li>
-                <li><a href="/m_personal_book">Personal</a></li>
-                <li><a href="/favorites">Favorites</a></li>
-                <li><a href="/translate">Translate</a></li>
+                <li onClick={(() => navigate("/reading"))}>Reading</li>
+                <li onClick={(() => navigate("/m_personal_book"))}>Personal</li>
+                <li onClick={(() => navigate("/favorites"))}>Favorites</li>
+                <li onClick={(() => navigate("/translate"))}>Translate</li>
               </ul>
             </div>
 

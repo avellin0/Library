@@ -22,7 +22,7 @@ export function TranslateEpub() {
     const formData = new FormData();
     formData.append("file", file);
 
-    await fetch("https://pylibrary.onrender.com", {
+    await fetch("https://pylibrary.onrender.com/upload", {
       method: "POST",
       body: formData,
     });
@@ -31,7 +31,7 @@ export function TranslateEpub() {
   }
 
   const baixarEpub = async (filename: string) => {
-    const response = await fetch(`http://localhost:8000/download/${filename}`);
+    const response = await fetch(`https://pylibrary.onrender.com/download/${filename}`);
 
     if (!response.ok) {
       alert("Erro ao baixar arquivo");
